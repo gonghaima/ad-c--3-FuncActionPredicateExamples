@@ -6,7 +6,8 @@ class Program
     {
         MathClass mathClass = new MathClass();
 
-        Func<int, int, int> calc = mathClass.Sum;
+        //Func<int, int, int> calc = mathClass.Sum;
+        Func<int, int, int> calc = delegate (int a, int b) { return a + b; };
 
         int result = calc(1,2);
         Console.WriteLine($"Result: {result}");
