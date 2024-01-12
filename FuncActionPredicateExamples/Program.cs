@@ -11,13 +11,21 @@ class Program
     {
         // MathClass mathClass = new MathClass();
 
+        float d = 2.3f, e = 4.56f;
+        int f = 5;
+        Func<float, float, int, float> calc2 = (arg1, arg2, arg3) => (arg1 + arg2) * arg3;
+
+        float result2 = calc2(d,e,f);
+        Console.WriteLine($"Result: {result2}");
+
         //Func<int, int, int> calc = mathClass.Sum;
         //Func<int, int, int> calc = delegate (int a, int b) { return a + b; };
         //Func<int, int, int> calc = (a, b) => a + b;
-        Func2<int, int, int> calc = (a, b) => a + b;
+        // Func2<int, int, int> calc = (a, b) => a + b;
 
-        int result = calc(1,2);
-        Console.WriteLine($"Result: {result}");
+
+        //int result = calc(1,2);
+        //Console.WriteLine($"Result: {result}");
     }
 }
 
