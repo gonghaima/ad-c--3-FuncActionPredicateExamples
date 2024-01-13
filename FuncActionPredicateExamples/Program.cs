@@ -11,12 +11,12 @@ class Program
     {
         // MathClass mathClass = new MathClass();
 
-        float d = 2.3f, e = 4.56f;
-        int f = 5;
-        Func<float, float, int, float> calc2 = (arg1, arg2, arg3) => (arg1 + arg2) * arg3;
+        //float d = 2.3f, e = 4.56f;
+        //int f = 5;
+        //Func<float, float, int, float> calc2 = (arg1, arg2, arg3) => (arg1 + arg2) * arg3;
 
-        float result2 = calc2(d,e,f);
-        Console.WriteLine($"Result: {result2}");
+        //float result2 = calc2(d,e,f);
+        //Console.WriteLine($"Result: {result2}");
 
         //Func<int, int, int> calc = mathClass.Sum;
         //Func<int, int, int> calc = delegate (int a, int b) { return a + b; };
@@ -26,6 +26,14 @@ class Program
 
         //int result = calc(1,2);
         //Console.WriteLine($"Result: {result}");
+
+        Func<decimal, decimal, decimal> calculateTotalAnnualSalary = (annualSalary, bonusPercentage) => annualSalary + (annualSalary * (bonusPercentage / 100));
+        //********Action
+
+        Action<int, string, string, decimal, char, bool> displayEmployeeDetails =
+            (arg1, arg2, arg3, arg4, arg5, arg6) =>
+                    Console.WriteLine($"Id: {arg1}{Environment.NewLine}First Name: {arg2}{Environment.NewLine}Last Name: {arg3}{Environment.NewLine}Annual Salary: {arg4}{Environment.NewLine}Gender: {arg5}{Environment.NewLine}Manager: {arg6}");
+        displayEmployeeDetails(1, "Sarah", "Jones", 60000, 'f', true);
     }
 }
 
