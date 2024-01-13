@@ -27,14 +27,59 @@ class Program
         //int result = calc(1,2);
         //Console.WriteLine($"Result: {result}");
 
-        Func<decimal, decimal, decimal> calculateTotalAnnualSalary = (annualSalary, bonusPercentage) => annualSalary + (annualSalary * (bonusPercentage / 100));
+        //Func<decimal, decimal, decimal> calculateTotalAnnualSalary = (annualSalary, bonusPercentage) => annualSalary + (annualSalary * (bonusPercentage / 100));
         //********Action
 
         Action<int, string, string, decimal, char, bool> displayEmployeeDetails =
             (arg1, arg2, arg3, arg4, arg5, arg6) =>
                     Console.WriteLine($"Id: {arg1}{Environment.NewLine}First Name: {arg2}{Environment.NewLine}Last Name: {arg3}{Environment.NewLine}Annual Salary: {arg4}{Environment.NewLine}Gender: {arg5}{Environment.NewLine}Manager: {arg6}");
-        displayEmployeeDetails(1, "Sarah", "Jones", 60000, 'f', true);
+        //displayEmployeeDetails(1, "Sarah", "Jones", 60000, 'f', true);
+
+        //***********Predicate
+        List<Employee> employees = new List<Employee>();
+
+        employees.Add(new Employee { Id = 1, FirstName = "Sarah", LastName = "Jones", AnnualSalary = 60000, Gender = 'f', IsManager = true });
+        employees.Add(new Employee { Id = 2, FirstName = "Andrew", LastName = "Brown", AnnualSalary = 40000, Gender = 'm', IsManager = false });
+        employees.Add(new Employee { Id = 3, FirstName = "John", LastName = "Henderson", AnnualSalary = 58000, Gender = 'm', IsManager = true });
+        employees.Add(new Employee { Id = 4, FirstName = "Jane", LastName = "May", AnnualSalary = 30000, Gender = 'f', IsManager = false });
+
+        List<Employee> employeesFiltered = FilterEmployees(employees, e => e.IsManager == true);
+
+        foreach (Employee employee in employeesFiltered)
+        {
+            displayEmployeeDetails(employee.Id, employee.FirstName, employee.LastName, employee.AnnualSalary, employee.Gender, employee.IsManager);
+            Console.WriteLine();
+        }
+
+
+
+        Console.ReadKey();
+
     }
+
+    static List<Employee> FilterEmployees(List<Employee> employees, Predicate<Employee> predicate)
+    {
+        List<Employee> employeesFiltered = new List<Employee>();
+
+        foreach (Employee employee in employees)
+        {
+            if (predicate(employee))
+            {
+                employeesFiltered.Add(employee);
+            }
+        }
+        return employeesFiltered;
+    }
+}
+
+public class Employee
+{
+    public int Id { get; set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public decimal AnnualSalary { get; set; }
+    public char Gender { get; set; }
+    public bool IsManager { get; set; }
 }
 
 public class MathClass
