@@ -1,4 +1,6 @@
-﻿namespace FuncActionPredicateExamples;
+﻿using System.Linq;
+
+namespace FuncActionPredicateExamples;
 
 class Program
 {
@@ -44,7 +46,8 @@ class Program
         employees.Add(new Employee { Id = 4, FirstName = "Jane", LastName = "May", AnnualSalary = 30000, Gender = 'f', IsManager = false });
 
         //List<Employee> employeesFiltered = FilterEmployees(employees, e => e.IsManager == true);
-        List<Employee> employeesFiltered = employees.FilterEmployees(e => e.AnnualSalary > 45000);
+        //List<Employee> employeesFiltered = employees.FilterEmployees(e => e.AnnualSalary > 45000);
+        List<Employee> employeesFiltered = employees.Where(e => e.AnnualSalary > 45000).ToList();
 
         foreach (Employee employee in employeesFiltered)
         {
